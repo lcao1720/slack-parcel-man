@@ -1,0 +1,7 @@
+-r prod.in
+
+black
+pylint
+pip-tools
+pytest
+ipdb
