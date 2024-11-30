@@ -26,6 +26,9 @@ class MESSAGE_SUBTYPE(StrEnum):
 
 
 # Slack client setup
+from dotenv import load_dotenv
+
+load_dotenv() 
 slack_token = os.environ["SLACK_TOKEN"]
 client = WebClient(token=slack_token)
 [[record['id'], record['name']] for record in client.conversations_list().data['channels']]
@@ -68,6 +71,9 @@ def fetch_weekly_notes(channel_name):
                 user_messages[user_name].append(replace_userid_in_text(msg_text))
     return user_messages
 
-channel_id_1 = "help-daily-idea"
-weekly_notes = fetch_weekly_notes(channel_id_1)
 
+
+if __name__=='__main__':
+    channel_id_1 = "help-daily-idea"
+    weekly_notes = fetch_weekly_notes(channel_id_1)
+    print(weekly_notes)
